@@ -1,14 +1,11 @@
 def get_tokens(s: str) -> list[str]:
-    """Принимает на вход операции и отделяет их пробелами с двух сторон.
+    """
+    Заменяет операторы на их версии с пробелом с обеих сторон
 
-    Parameters
-    ----------
-    s : str
-
-    Returns
-    -------
-    list[str]
-        Стек с разделенными пробелами операциями
+    :param s: Входная строка с выражением
+    :type s: str
+    :return: Список токенов с разделёнными операциями
+    :rtype: list[str]
     """
     changes = {
         '+': ' + ',
@@ -30,21 +27,20 @@ def get_tokens(s: str) -> list[str]:
     return s.split()
 
 
-def binary_operations(symbol: str, num1: int | float, num2: int | float) -> int | float:
-    """Выполняет все бинарные операции (если их возможно выполнить)
-
-    Parameters
-    ----------
-    symbol : str
-    num1 : int | float
-    num2 : int | float
-
-    Returns
-    -------
-    int | float
-        Результат бинарной операции
+def binary_operations(token: str, num1: float, num2: float) -> float:
     """
-    match symbol:
+    Выполняет бинарные операции над двумя числами
+
+    :param token: Оператор для выполнения
+    :type token: str
+    :param num1: Левый операнд
+    :type num1: float
+    :param num2: Правый операнд
+    :type num2: float
+    :raises ZeroDivisionError: Если выполняется деление на ноль
+    :raises: ValueError: Если операции // или % выполняются с числами, у которых ненулевая дробная часть
+    """
+    match token:
         case '+':
             num1 += num2
         case '-':
@@ -75,20 +71,18 @@ def binary_operations(symbol: str, num1: int | float, num2: int | float) -> int 
     return num1
 
 
-def unary_operations(symbol: str, num: int | float) -> int | float:
-    """Выполняет унарные операции
-
-    Parameters
-    ----------
-    symbol : str
-    num : int | float
-
-    Returns
-    -------
-    int | float
-        Результат унарной операции
+def unary_operations(token: str, num: float) -> float:
     """
-    match symbol:
+    Выполняет унарные операции над числом
+
+   :param token: Оператор для выполнения
+   :type token: str
+   :param num: Число, к которому применяется унарная операция
+   :type num: float
+   :return: Результат после выполнения унарной операции
+   :rtype: float
+    """
+    match token:
         case '~':
             num *= -1
         case '$':
