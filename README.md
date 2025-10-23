@@ -24,7 +24,7 @@
 Рекомендуется вводить выражения без скобок, чтобы избежать путаницы.
 
 ## Как запускать
-1. python -m venv venv   *jncakhs*
+1. python -m venv venv
 2. a) для Windows: venv\Scripts\activate
    б) для macOS и Unix: source venv/bin/activate
 3. git clone https://github.com/rabazatov1/lab_1

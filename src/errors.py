@@ -38,15 +38,16 @@ def empty_line(loc_tokens):
 
 def right_tokens(loc_tokens):
     """
-    Проверяет, все ли символы в выражении допустимы
+    Проверяет, все ли токены в выражении допустимы
 
     :param loc_tokens: Список токенов
     :type loc_tokens: list[str]
-    :raises SyntaxError: Если найден хотя бы один недопустимый символ
+    :raises SyntaxError: Если найден хотя бы один недопустимый токен
     """
     for token in set(loc_tokens):
         if not is_number(token) and token not in '+-**//%$~()':
-            raise SyntaxError(f"Символ {token} недопустим в программе")
+            raise SyntaxError("Найдем недопустимый токен (в программе могут использоваться только корректно записанные \
+числа, операторы из '+-**//%$~' и скобки")
 
 
 def brackets(loc_tokens):
@@ -106,7 +107,7 @@ def check_all_errors(loc_tokens) -> bool:
     Проверяет выражение на все возможные ошибки
 
     :param loc_tokens: Список токенов
-    :type loc_tokens: list[str]
+    :type loc_tokens: list[str]Й
     :return: True, если все проверки пройдены успешно
     :rtype: bool
     :raises ValueError: Если выражение пустое
