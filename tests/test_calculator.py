@@ -44,13 +44,17 @@ def test_empty_line():
         tech_part("            ")
 
 
-def test_correct_symbols():
+def test_correct_tokens():
     with pytest.raises(SyntaxError):
         assert tech_part("2 a *")
     with pytest.raises(SyntaxError):
-        assert tech_part("2 5 ^")
+        assert tech_part("2 5^ -")
+    with pytest.raises(SyntaxError):
+        assert tech_part("5 &4 +")
     with pytest.raises(SyntaxError):
         assert tech_part("{6 3 *}")
+    with pytest.raises(SyntaxError):
+        assert tech_part("5.2.3")
 
 
 def test_operands_must_be_integer():
